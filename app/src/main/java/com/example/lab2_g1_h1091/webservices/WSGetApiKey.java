@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 
-public class wsgetapikey {
+public class WSGetApiKey {
     String URL_WEB_SERVICE = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000";
     String RUTA = "";
     String GROUP_KEY = "WfnNf52Wsw6p6N8gVPFF";
