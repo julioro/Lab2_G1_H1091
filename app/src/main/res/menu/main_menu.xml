@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuItem1"
+        android:title="Lista de personas" />
+    <item
+        android:id="@+id/menuItem2"
+        android:title="Agregar trabajo" />
+</menu>
