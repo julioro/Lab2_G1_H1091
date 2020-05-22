@@ -1,6 +1,5 @@
 package com.example.lab2_g1_h1091.entidades;
-
-import androidx.annotation.FloatRange;
+import androidx.annotation.Size;
 
 public class Empleado {
     @Size(max=6)
