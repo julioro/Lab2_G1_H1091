@@ -2,13 +2,10 @@ package com.example.lab2_g1_h1091.webservices;
 
 import android.util.Log;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.AuthFailureError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.lab2_g1_h1091.entidades.ApiKey;
 import com.google.gson.Gson;
 
