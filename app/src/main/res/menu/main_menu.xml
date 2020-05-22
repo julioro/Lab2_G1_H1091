@@ -4,8 +4,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menuItem1"
-        android:title="Lista de personas" />
+        android:icon="@drawable/ic_smile"
+        android:title="Lista de personas"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menuItem2"
-        android:title="Agregar trabajo" />
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Agregar trabajo"
+        app:showAsAction="ifRoom" />
 </menu>
