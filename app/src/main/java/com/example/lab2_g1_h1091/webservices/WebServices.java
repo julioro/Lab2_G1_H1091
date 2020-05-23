@@ -53,7 +53,7 @@ public class WebServices {
                                                     if (dtoEmpleados.getEstado().equals("ok")) {
                                                         Log.d("res", "Response de request ok");
                                                         Empleado[] empleados = dtoEmpleados.getEmpleados();
-                                                        ListaEmpleadosAdapter listaEmpleadosAdapter = new ListaEmpleadosAdapter(empleados, MainActivity.this);
+                                                        ListaEmpleadosAdapter listaEmpleadosAdapter = new ListaEmpleadosAdapter(empleados, );
                                                     } else {
                                                         Log.d("res", "Response de request error");
                                                         Log.d("msg", response.toString());

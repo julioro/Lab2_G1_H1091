@@ -55,7 +55,6 @@ public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAd
         String texto = e.getFirstName() + " " + e.getLastName();
         holder.textView.setText(texto);
     }
-
     @Override
     public int getItemCount() {
         return data.length;
