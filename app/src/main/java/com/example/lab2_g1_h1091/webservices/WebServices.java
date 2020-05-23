@@ -52,7 +52,7 @@ public class WebServices {
                                                     DtoDepartment dtoDepartment = gson.fromJson(response, DtoDepartment.class);
                                                     if (dtoDepartment.getEstado().equals("ok")) {
                                                         Log.d("res", "Response de request ok");
-                                                        Department[] departamentos = dtoDepartment.getLista();
+                                                        Department[] departamentos = dtoDepartment.getDepartamentos();
                                                         /*
                                                          *
                                                          * Insertar logica que use departamentos.
