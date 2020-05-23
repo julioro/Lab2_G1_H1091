@@ -8,14 +8,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+<<<<<<<<< Temporary merge branch 1
+import android.view.View;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.lab2_g1_h1091.webservices.WebServices;
+=========
 import android.view.MenuItem;
 
-import com.example.lab2_g1_h1091.entidades.Department;
-import com.example.lab2_g1_h1091.entidades.Empleado;
-import com.example.lab2_g1_h1091.entidades.Manager;
 import com.example.lab2_g1_h1091.entidades.Trabajo;
-import com.example.lab2_g1_h1091.utilitary.ListaEmpleadosAdapter;
 import com.example.lab2_g1_h1091.utilitary.ListaTrabajosAdapter;
+>>>>>>>>> Temporary merge branch 2
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,29 +54,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Department department = new Department();
-        Manager manager1 = new Manager();
+    }
+
+    public void calcularBtn(View view){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest rq = (new WebServices()).getApiKey("listarEmpleados", view, requestQueue);
+        requestQueue.add(rq);
+
+
+
         Trabajo trabajo1 = new Trabajo("jefe","JEFE",1000,2000,"RUIZNAV");
         Trabajo trabajo2 = new Trabajo("jefe1","JEFE1",2000,3000,"RUIZNAV");
 
-
-        Empleado empleado1 = new Empleado("gaa", "J P", "VM", "A20145334@PUCP.PE", "941107208", trabajo1, manager1, 30000.9, 1000, department, "da");
-
-        Empleado empleado2 = new Empleado("gaa", "J P", "VM", "A20145334@PUCP.PE", "941107208", trabajo1, manager1, 30000.9, 1000, department, "da");
-
-        Empleado empleado3 = new Empleado("gaa", "J P", "VM", "A20145334@PUCP.PE", "941107208", trabajo1, manager1, 30000.9, 1000, department, "da");
-
-        Empleado empleado4 = new Empleado("gaa", "J P", "VM", "A20145334@PUCP.PE", "941107208", trabajo1, manager1, 30000.9, 1000, department, "da");
-
         Trabajo[] listaTrabajos = {trabajo1 ,trabajo2};
-        Empleado[] empleados = {empleado1, empleado2, empleado3, empleado4};
-        ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(listaTrabajos,MainActivity.this);
-        ListaEmpleadosAdapter listaEmpleadosAdapter = new ListaEmpleadosAdapter(empleados, MainActivity.this);
 
+        ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(listaTrabajos,MainActivity.this);
         RecyclerView rV = findViewById(R.id.recyclerView1);
-        rV.setAdapter(listaEmpleadosAdapter);
+        rV.setAdapter(adapter);
         rV.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-
     }
+
 }

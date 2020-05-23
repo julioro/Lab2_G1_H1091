@@ -7,6 +7,16 @@ public class DtoTrabajo {
     private String estado;
     private Trabajo[] trabajos;
 
+    public int getCuota() {
+        return cuota;
+    }
+
+    public void setCuota(int cuota) {
+        this.cuota = cuota;
+    }
+
+    private int cuota;
+
     public DtoTrabajo(){
 
     }

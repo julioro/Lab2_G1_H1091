@@ -11,11 +11,11 @@ public class DtoEmpleados {
         this.estado = estado;
     }
 
-    public String getCuota() {
+    public int getCuota() {
         return cuota;
     }
 
-    public void setCuota(String cuota) {
+    public void setCuota(int cuota) {
         this.cuota = cuota;
     }
 
@@ -28,6 +28,6 @@ public class DtoEmpleados {
     }
 
     private String estado;
-    private String cuota;
+    private int cuota;
     private Empleado[] empleados;
 }

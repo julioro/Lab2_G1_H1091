@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class ApiKey {
 
     private String estado;
-    private String cuota;
+    private int cuota;
     @SerializedName("api-key")
     private String api_key;
     private String msg;
@@ -18,11 +18,11 @@ public class ApiKey {
         this.estado = estado;
     }
 
-    public String getCuota() {
+    public int getCuota() {
         return cuota;
     }
 
-    public void setCuota(String cuota) {
+    public void setCuota(int cuota) {
         this.cuota = cuota;
     }
 

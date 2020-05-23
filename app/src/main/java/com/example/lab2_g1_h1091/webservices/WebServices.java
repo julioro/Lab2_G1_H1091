@@ -13,7 +13,6 @@ import com.example.lab2_g1_h1091.MainActivity;
 import com.example.lab2_g1_h1091.entidades.ApiKey;
 import com.example.lab2_g1_h1091.entidades.Empleado;
 import com.example.lab2_g1_h1091.utilitary.DtoEmpleados;
-import com.example.lab2_g1_h1091.utilitary.ListaEmpleadosAdapter;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
