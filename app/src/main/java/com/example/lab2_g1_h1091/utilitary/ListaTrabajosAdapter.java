@@ -44,11 +44,12 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
 
     @Override
     public void onBindViewHolder(TrabajoViewHolder holder, int position) {
-
+/*
         String mCurrent = data[position].getJobTitle() + " - " + data[position].getJobId() + "\n" +
                 "Salario: " + data[position].getMinSalary() +"-"+data[position].getMaxSalary();
 
         holder.textView.setText(mCurrent);
+  */
     }
 
     @Override
