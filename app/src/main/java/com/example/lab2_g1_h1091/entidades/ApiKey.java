@@ -1,9 +1,12 @@
 package com.example.lab2_g1_h1091.entidades;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ApiKey {
 
     private String estado;
     private String cuota;
+    @SerializedName("api-key")
     private String api_key;
     private String msg;
 
