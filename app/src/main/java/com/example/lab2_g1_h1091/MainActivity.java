@@ -29,8 +29,10 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.menuItem1:
                 Intent intent = new Intent(this, EmpleadosActivity.class);
-                startActivity(intent);
+                int requetsCode_NewTrabajo = 1;
+                startActivityForResult(intent,requetsCode_NewTrabajo);
                 return true;
+
             case R.id.menuItem2:
 
                 return true;
