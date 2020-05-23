@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                                             Log.d("xd", "Estoy aca 3.");
                                             if (dtoTrabajos.getEstado().equals("ok")) { // Si la consulta por lista de trabajos fue exitosa.
                                                 Log.d("xd", "Estoy aca 4.");
+
+
                                                 Trabajo[] trabajos = dtoTrabajos.getTrabajos();
                                                 ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(trabajos, MainActivity.this);
                                                 RecyclerView rV = findViewById(R.id.recyclerView1);
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
         requestQueue.add(getApiKeyRequest);
 
-        /*
+    /*
         Trabajo trabajo1 = new Trabajo("jefe", "JEFE", 1000, 2000, "RUIZNAV");
         Trabajo trabajo2 = new Trabajo("jefe1", "JEFE1", 2000, 3000, "RUIZNAV");
 
