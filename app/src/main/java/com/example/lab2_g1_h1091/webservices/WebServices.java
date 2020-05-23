@@ -13,6 +13,7 @@ import com.example.lab2_g1_h1091.MainActivity;
 import com.example.lab2_g1_h1091.entidades.ApiKey;
 import com.example.lab2_g1_h1091.entidades.Empleado;
 import com.example.lab2_g1_h1091.utilitary.DtoEmpleados;
+import com.example.lab2_g1_h1091.utilitary.ListaEmpleadosAdapter;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -52,6 +53,7 @@ public class WebServices {
                                                     if (dtoEmpleados.getEstado().equals("ok")) {
                                                         Log.d("res", "Response de request ok");
                                                         Empleado[] empleados = dtoEmpleados.getEmpleados();
+                                                        ListaEmpleadosAdapter listaEmpleadosAdapter = new ListaEmpleadosAdapter(empleados, MainActivity.this);
                                                     } else {
                                                         Log.d("res", "Response de request error");
                                                         Log.d("msg", response.toString());
