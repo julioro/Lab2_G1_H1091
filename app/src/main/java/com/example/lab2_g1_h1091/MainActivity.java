@@ -61,16 +61,13 @@ public class MainActivity extends AppCompatActivity {
         final RequestQueue requestQueue = Volley.newRequestQueue(this);
         String GROUP_KEY = "WfnNf52Wsw6p6N8gVPFF";
         String URL_TARGET_GET_API_KEY = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/getApiKey?groupKey=" + GROUP_KEY;
-        Log.d("xd", "Estoy aca 0.");
         final StringRequest getApiKeyRequest = new StringRequest(StringRequest.Method.POST, URL_TARGET_GET_API_KEY,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("xd", "Estoy aca 1.");
                         Gson gson = new Gson();
                         final ApiKey responseGetKey = gson.fromJson(response, ApiKey.class);
                         if (responseGetKey.getEstado().equals("ok")) { // Si la consulta fue realziada exitosamente por el apikey.
-                            Log.d("xd", "Estoy aca 2.");
                             // Se procede a pedir la lista de trabajos.
                             String URL_TARGET_LISTA_TRABAJOS = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/trabajos";
                             StringRequest listarTrabajosRequest = new StringRequest(StringRequest.Method.GET, URL_TARGET_LISTA_TRABAJOS,
@@ -79,11 +76,7 @@ public class MainActivity extends AppCompatActivity {
                                         public void onResponse(String response) {
                                             Gson gson = new Gson();
                                             DtoTrabajo dtoTrabajos = gson.fromJson(response, DtoTrabajo.class);
-                                            Log.d("xd", "Estoy aca 3.");
                                             if (dtoTrabajos.getEstado().equals("ok")) { // Si la consulta por lista de trabajos fue exitosa.
-                                                Log.d("xd", "Estoy aca 4.");
-
-
                                                 Trabajo[] trabajos = dtoTrabajos.getTrabajos();
                                                 ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(trabajos, MainActivity.this);
                                                 RecyclerView rV = findViewById(R.id.recyclerView1);
@@ -98,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            Log.d("xd", "Estoy aca 5.");
+                                            Log.e("error", error.toString());
 
                                         }
                                     }) {
@@ -109,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                                     return parametros;
                                 }
                             };
-                            Log.d("xd", "Estoy aca 6.");
                             requestQueue.add(listarTrabajosRequest);
                         } else { // Si hubo errror en la consulta por el apikey
                             Log.e("error", response.toString());

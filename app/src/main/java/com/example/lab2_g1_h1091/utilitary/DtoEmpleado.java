@@ -4,9 +4,26 @@ import com.example.lab2_g1_h1091.entidades.Empleado;
 
 public class DtoEmpleado {
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Empleado[] getLista() {
+        return lista;
+    }
+
+    public void setLista(Empleado[] lista) {
+        this.lista = lista;
+    }
+
     private String estado;
     private Empleado[] lista;
     private int cuota;
+
     public int getCuota() {
         return cuota;
     }
