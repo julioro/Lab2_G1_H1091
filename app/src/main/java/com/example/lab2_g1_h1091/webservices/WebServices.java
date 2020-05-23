@@ -12,7 +12,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.lab2_g1_h1091.MainActivity;
 import com.example.lab2_g1_h1091.entidades.ApiKey;
 import com.example.lab2_g1_h1091.entidades.Empleado;
+import com.example.lab2_g1_h1091.entidades.Trabajo;
 import com.example.lab2_g1_h1091.utilitary.DtoEmpleados;
+import com.example.lab2_g1_h1091.utilitary.DtoTrabajo;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -25,6 +27,7 @@ public class WebServices {
     String GROUP_KEY = "WfnNf52Wsw6p6N8gVPFF";
 
     public StringRequest getApiKey(final String action, final View view, final RequestQueue rq) {
+        String URL = "";
         RUTA = "/getApiKey";
         URL_TARGET = URL_WEB_SERVICE + RUTA + "?groupKey=" + GROUP_KEY;
         StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, URL_TARGET,
@@ -69,8 +72,8 @@ public class WebServices {
                                             }) {
                                         @Override
                                         public Map<String, String> getHeaders() throws AuthFailureError {
-                                            Map<String,String> parametros = new HashMap<>();
-                                            parametros.put("api-key",responseGetKey.getApi_key());
+                                            Map<String, String> parametros = new HashMap<>();
+                                            parametros.put("api-key", responseGetKey.getApi_key());
                                             return parametros;
                                         }
                                     };
@@ -79,6 +82,41 @@ public class WebServices {
                                     break;
                                 case "listarTrabajos":
                                     Log.d("Opcion", action);
+                                    Log.d("api-keyObtenida", responseGetKey.getApi_key());
+                                    URL = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/trabajos";
+                                    Log.d("urlListarTrabajos", URL);
+                                    StringRequest listarTrabajosRequest = new StringRequest(StringRequest.Method.GET, URL,
+                                            new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    Log.d("res", "Request ok");
+                                                    Gson gson = new Gson();
+                                                    DtoTrabajo dtoTrabajos = gson.fromJson(response, DtoTrabajo.class);
+                                                    if (dtoTrabajos.getEstado().equals("ok")) {
+                                                        Log.d("res", "Response de request ok");
+                                                        Trabajo[] trabajos = dtoTrabajos.getTrabajos();
+                                                    } else {
+                                                        Log.d("res", "Response de request error");
+                                                        Log.d("msg", response.toString());
+                                                    }
+                                                }
+                                            },
+                                            new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    Log.d("res", "err");
+                                                    Log.e("res", error.toString());
+
+                                                }
+                                            }) {
+                                        @Override
+                                        public Map<String, String> getHeaders() throws AuthFailureError {
+                                            Map<String, String> parametros = new HashMap<>();
+                                            parametros.put("api-key", responseGetKey.getApi_key());
+                                            return parametros;
+                                        }
+                                    };
+                                    rq.add(listarTrabajosRequest);
                                     break;
 
                             }
