@@ -38,53 +38,47 @@ public class WebServices {
                         final ApiKey responseGetKey = gson.fromJson(response, ApiKey.class);
                         if (responseGetKey.getEstado().equalsIgnoreCase("OK")) {
                             switch (action) {
-                                case "listarEmpleados":
+                                case "listaEmpleados":
                                     Log.d("Opcion", action);
-                                    Log.d("api-keyObtenida", responseGetKey.getApi_key());
-                                    // Apunto al URL par listar empleados.
-                                    String URL = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/empleados";
-                                    Log.d("urlListarEmpleados", URL);
-                                    StringRequest listarEmpleadosRequest = new StringRequest(StringRequest.Method.GET, URL,
+                                    String URL_LISTAR_EMPLEADOS = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/empleados";
+                                    StringRequest listarEmpleadosRequest = new StringRequest(StringRequest.Method.GET, URL_LISTAR_EMPLEADOS,
                                             new Response.Listener<String>() {
                                                 @Override
                                                 public void onResponse(String response) {
                                                     Log.d("res", "Request ok");
                                                     Gson gson = new Gson();
-                                                    DtoEmpleado dtoEmpleados = gson.fromJson(response, DtoEmpleado.class);
-                                                    if (dtoEmpleados.getEstado().equals("ok")) {
+                                                    DtoEmpleado dtoEmpleado = gson.fromJson(response, DtoEmpleado.class);
+                                                    if (dtoEmpleado.getEstado().equals("ok")) {
                                                         Log.d("res", "Response de request ok");
-                                                        Empleado[] empleados = dtoEmpleados.getLista();
+                                                        Empleado[] empleados = dtoEmpleado.getLista();
                                                     } else {
-                                                        Log.d("res", "Response de request error");
                                                         Log.d("msg", response.toString());
                                                     }
-
                                                 }
                                             },
                                             new Response.ErrorListener() {
                                                 @Override
                                                 public void onErrorResponse(VolleyError error) {
-                                                    Log.d("res", "err");
                                                     Log.e("res", error.toString());
 
                                                 }
                                             }) {
                                         @Override
                                         public Map<String, String> getHeaders() throws AuthFailureError {
-                                            Map<String, String> parametros = new HashMap<>();
-                                            parametros.put("api-key", responseGetKey.getApi_key());
-                                            return parametros;
+                                            Map<String, String> params = new HashMap<>();
+                                            params.put("api-key", responseGetKey.getApi_key());
+                                            return params;
                                         }
                                     };
-
                                     rq.add(listarEmpleadosRequest);
                                     break;
+
                                 case "listarTrabajos":
                                     Log.d("Opcion", action);
                                     Log.d("api-keyObtenida", responseGetKey.getApi_key());
-                                    URL = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/trabajos";
-                                    Log.d("urlListarTrabajos", URL);
-                                    StringRequest listarTrabajosRequest = new StringRequest(StringRequest.Method.GET, URL,
+                                    String URL_LISTAR_TRABAJOS = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/trabajos";
+                                    Log.d("urlListarTrabajos", URL_LISTAR_TRABAJOS);
+                                    StringRequest listarTrabajosRequest = new StringRequest(StringRequest.Method.GET, URL_LISTAR_TRABAJOS,
                                             new Response.Listener<String>() {
                                                 @Override
                                                 public void onResponse(String response) {
