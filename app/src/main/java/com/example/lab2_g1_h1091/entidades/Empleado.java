@@ -1,6 +1,12 @@
 package com.example.lab2_g1_h1091.entidades;
 
+<<<<<<< .merge_file_a04824
 import androidx.annotation.Size;
+=======
+import androidx.annotation.FloatRange;
+import androidx.annotation.Size;
+
+>>>>>>> .merge_file_a06940
 public class Empleado {
     @Size(max=6)
     private String employeeId;
