@@ -14,6 +14,14 @@ public class Trabajo {
     @Size(max = 7, min = 7)
     private String createdBy;
 
+    public Trabajo(String jobId, String jobTitle, int minSalary, int maxSalary, String createdBy) {
+        this.jobId = jobId;
+        this.jobTitle = jobTitle;
+        this.minSalary = minSalary;
+        this.maxSalary = maxSalary;
+        this.createdBy = createdBy;
+    }
+
     public String getJobId() {
         return jobId;
     }

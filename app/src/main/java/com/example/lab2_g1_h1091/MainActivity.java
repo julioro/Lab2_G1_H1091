@@ -1,9 +1,14 @@
 package com.example.lab2_g1_h1091;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Menu;
+
+import com.example.lab2_g1_h1091.entidades.Trabajo;
+import com.example.lab2_g1_h1091.utilitary.ListaTrabajosAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
