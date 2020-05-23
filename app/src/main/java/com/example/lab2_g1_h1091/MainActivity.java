@@ -3,22 +3,24 @@ package com.example.lab2_g1_h1091;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.Menu;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.lab2_g1_h1091.webservices.WebServices;
 
 public class MainActivity extends AppCompatActivity {
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //return super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        RequestQueue rq = Volley.newRequestQueue(this);
+
+        StringRequest sr1 =  (new WebServices()).getApiKey("listarEmpleados");
+        StringRequest sr2 =  (new WebServices()).getApiKey("listarTrabajos");
+        rq.add(sr1);
+        rq.add(sr2);
+
 
     }
 }
