@@ -8,19 +8,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-<<<<<<<<< Temporary merge branch 1
+
 import android.view.View;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.lab2_g1_h1091.webservices.WebServices;
-=========
+
 import android.view.MenuItem;
 
 import com.example.lab2_g1_h1091.entidades.Trabajo;
 import com.example.lab2_g1_h1091.utilitary.ListaTrabajosAdapter;
->>>>>>>>> Temporary merge branch 2
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Trabajo trabajo1 = new Trabajo("jefe","JEFE",1000,2000,"RUIZNAV");
+      /*  Trabajo trabajo1 = new Trabajo("jefe","JEFE",1000,2000,"RUIZNAV");
         Trabajo trabajo2 = new Trabajo("jefe1","JEFE1",2000,3000,"RUIZNAV");
 
-        Trabajo[] listaTrabajos = {trabajo1 ,trabajo2};
+        Trabajo[] listaTrabajos = {trabajo1 ,trabajo2};*/
 
         ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(listaTrabajos,MainActivity.this);
         RecyclerView rV = findViewById(R.id.recyclerView1);

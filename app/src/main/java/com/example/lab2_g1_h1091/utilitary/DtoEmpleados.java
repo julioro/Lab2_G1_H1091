@@ -30,4 +30,6 @@ public class DtoEmpleados {
     private String estado;
     private int cuota;
     private Empleado[] empleados;
+
+
 }
