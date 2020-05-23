@@ -17,7 +17,7 @@ public class wsgetapikey {
     String RUTA = "";
     String GROUP_KEY = "WfnNf52Wsw6p6N8gVPFF";
 
-    public ApiKey getApiKey() {
+    public void getApiKey() {
         RUTA = "/getApiKey";
         String URL_TARGET = URL_WEB_SERVICE + RUTA + "?groupKey=" + GROUP_KEY;
         StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, URL_TARGET,
@@ -25,9 +25,7 @@ public class wsgetapikey {
                     @Override
                     public void onResponse(String response) {
                         Log.d(RUTA + " POST Response", response);
-                        Gson gson = new Gson();
-                        ApiKey responseGetKey = gson.fromJson(response, ApiKey.class);
-                        return ApiKey;
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -37,7 +35,7 @@ public class wsgetapikey {
                     }
                 }) {
             @Override
-            public Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("groupKey", GROUP_KEY);
                 return params;

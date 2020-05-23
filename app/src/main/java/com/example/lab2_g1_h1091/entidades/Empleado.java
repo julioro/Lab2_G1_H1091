@@ -12,13 +12,25 @@ public class Empleado {
     private String email;
     @Size(max=20)
     private String phoneNumber;
+    //
     private Trabajo trabajo;
+
+
+    //
+    private Manager manager;
+    //
+
     private double salary;
     private double commissionPct;
-    private Manager manager;
+
+    //
     private Department department;
+    //
     @Size(max=7)
     private String createdBy;
+
+
+    //getters and SETTER
 
     public Trabajo getTrabajo() {
         return trabajo;
