@@ -33,8 +33,7 @@ public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAd
         public EmpleadoViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.textView1);
-            button1 = itemView.findViewById(R.id.button1);
-            button2 = itemView.findViewById(R.id.button2);
+
         }
     }
 
@@ -52,7 +51,7 @@ public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAd
     public void onBindViewHolder(EmpleadoViewHolder holder, int position) {
 
         Empleado e = data[position];
-        String texto = e.getFirstName() + " " + e.getLastName();
+        String texto = e.getFirstName() + " " + e.getLastName() + " " + "\n" + e.getEmail();
         holder.textView.setText(texto);
     }
     @Override
