@@ -17,7 +17,7 @@ public class wsgetapikey {
     String RUTA = "";
     String GROUP_KEY = "WfnNf52Wsw6p6N8gVPFF";
 
-    public void getApiKey() {
+    public ApiKey getApiKey() {
         RUTA = "/getApiKey";
         String URL_TARGET = URL_WEB_SERVICE + RUTA + "?groupKey=" + GROUP_KEY;
         StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, URL_TARGET,
