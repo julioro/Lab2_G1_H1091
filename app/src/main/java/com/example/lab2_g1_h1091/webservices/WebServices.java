@@ -3,6 +3,8 @@ package com.example.lab2_g1_h1091.webservices;
 import android.util.Log;
 import android.view.View;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.AuthFailureError;
@@ -10,11 +12,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.lab2_g1_h1091.MainActivity;
+import com.example.lab2_g1_h1091.R;
 import com.example.lab2_g1_h1091.entidades.ApiKey;
 import com.example.lab2_g1_h1091.entidades.Empleado;
 import com.example.lab2_g1_h1091.entidades.Trabajo;
 import com.example.lab2_g1_h1091.utilitary.DtoEmpleados;
 import com.example.lab2_g1_h1091.utilitary.DtoTrabajo;
+import com.example.lab2_g1_h1091.utilitary.ListaTrabajosAdapter;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
