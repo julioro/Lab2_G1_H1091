@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,11 +14,12 @@ import android.widget.Spinner;
 import com.example.lab2_g1_h1091.entidades.Department;
 import com.example.lab2_g1_h1091.entidades.Trabajo;
 
-public class formularioTrabajo2 extends AppCompatActivity {
+public class formularioTrabajo2 extends AppCompatActivity{
 
     //Se supone que estas listas se llenan con WebServices
-    private Department[] listaDepartmets;
-    private String[] listaDepartmets_Nombres;
+    private Department[] listaDepartments;
+    private String[] listaDepartments_Nombres;
+    private int index_selectedDepartment;
 
 
 
@@ -26,13 +28,19 @@ public class formularioTrabajo2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_trabajo2);
 
-
+        //Spinner de Departments
+        final Spinner spinner = findViewById(R.id.spinnerDepartment);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                                         android.R.layout.simple_spinner_dropdown_item,
-                                        listaDepartmets_Nombres);
-
-        Spinner spinner = findViewById(R.id.spinnerDepartment);
+                                        listaDepartments_Nombres);
         spinner.setAdapter(adapter);
+        spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                index_selectedDepartment = position;
+
+            }
+        });
 
 
 
@@ -48,6 +56,12 @@ public class formularioTrabajo2 extends AppCompatActivity {
                 String minSalary = inputMinSalary.getText().toString();
                 EditText inputMaxSalary = findViewById(R.id.inputMaxSalary);
                 String maxSalary = inputMaxSalary.getText().toString();
+                EditText inputAbreviation = findViewById(R.id.inputAbreviacion);
+                String Abreviation = inputAbreviation.getText().toString();
+
+                Department selectedDepartment = listaDepartments[index_selectedDepartment];
+                String departmentShortName = selectedDepartment.getDepartmentShortName();
+                String jobId = departmentShortName + "_" + Abreviation;
 
 
                 Intent intent = new Intent();
@@ -67,4 +81,6 @@ public class formularioTrabajo2 extends AppCompatActivity {
             }
         });
     }
+
+
 }
