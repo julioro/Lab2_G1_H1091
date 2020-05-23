@@ -1,6 +1,6 @@
 package com.example.lab2_g1_h1091.utilitary;
 
-public class DtoBorrarTrabajo {
+public class DtoBorrar {
     public String getEstado() {
         return estado;
     }

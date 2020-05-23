@@ -3,23 +3,17 @@ package com.example.lab2_g1_h1091.webservices;
 import android.util.Log;
 import android.view.View;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.AuthFailureError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.lab2_g1_h1091.MainActivity;
-import com.example.lab2_g1_h1091.R;
 import com.example.lab2_g1_h1091.entidades.ApiKey;
 import com.example.lab2_g1_h1091.entidades.Empleado;
 import com.example.lab2_g1_h1091.entidades.Trabajo;
-import com.example.lab2_g1_h1091.utilitary.DtoBorrarTrabajo;
+import com.example.lab2_g1_h1091.utilitary.DtoBorrar;
 import com.example.lab2_g1_h1091.utilitary.DtoEmpleado;
 import com.example.lab2_g1_h1091.utilitary.DtoTrabajo;
-import com.example.lab2_g1_h1091.utilitary.ListaTrabajosAdapter;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -133,14 +127,14 @@ public class WebServices {
                                                 @Override
                                                 public void onResponse(String response) {
                                                     Gson gson = new Gson();
-                                                    DtoBorrarTrabajo dtoBorrarTrabajo = gson.fromJson(response, DtoBorrarTrabajo.class);
-                                                    if (dtoBorrarTrabajo.getEstado().equalsIgnoreCase("borrado exitoso")) {
+                                                    DtoBorrar dtoBorrar = gson.fromJson(response, DtoBorrar.class);
+                                                    if (dtoBorrar.getEstado().equalsIgnoreCase("borrado exitoso")) {
 
                                                         /*
-                                                        *
-                                                        * Insertar logica que retire la entrada con ese id del menu?
-                                                        *
-                                                        * */
+                                                         *
+                                                         * Insertar logica que retire la entrada con ese id del menu?
+                                                         *
+                                                         * */
                                                     } else {
                                                         Log.e("error", response.toString());
                                                     }
@@ -160,18 +154,46 @@ public class WebServices {
                                         }
                                     };
                                     rq.add(borrarTrabajoRequest);
-
-
-
-
-
-
-
-
-
-
-
                                     break;
+
+
+                                case "borrarEmpleado":
+                                    String idEmpleado = "";
+                                    String URL_TARGET_BORRAR_EMPLEADO = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/borrar/empleado?id=" + idEmpleado;
+                                    StringRequest borrarEmpleadoRequest = new StringRequest(StringRequest.Method.DELETE, URL_TARGET_BORRAR_EMPLEADO,
+                                            new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    Gson gson = new Gson();
+                                                    DtoBorrar dtoBorrar = gson.fromJson(response, DtoBorrar.class);
+                                                    if (dtoBorrar.getEstado().equalsIgnoreCase("borrado exitoso")) {
+
+                                                        /*
+                                                         *
+                                                         * Insertar logica que retire la entrada con ese id del menu?
+                                                         *
+                                                         * */
+                                                    } else {
+                                                        Log.e("error", response.toString());
+                                                    }
+                                                }
+                                            },
+                                            new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    Log.e("error", error.toString());
+                                                }
+                                            }) {
+                                        @Override
+                                        public Map<String, String> getHeaders() throws AuthFailureError {
+                                            Map<String, String> params = new HashMap<>();
+                                            params.put("api-key", responseGetKey.getApi_key());
+                                            return params;
+                                        }
+                                    };
+                                    rq.add(borrarEmpleadoRequest);
+                                    break;
+
 
                             }
                         }
