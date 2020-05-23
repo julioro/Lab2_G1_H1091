@@ -17,9 +17,10 @@ public class WSGetApiKey {
     String RUTA = "";
     String GROUP_KEY = "WfnNf52Wsw6p6N8gVPFF";
 
-    public ApiKey getApiKey() {
+    public void getApiKey() {
         RUTA = "/getApiKey";
         String URL_TARGET = URL_WEB_SERVICE + RUTA + "?groupKey=" + GROUP_KEY;
+        Log.d("xdxdx", URL_TARGET);
         StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, URL_TARGET,
                 new Response.Listener<String>() {
                     @Override
@@ -27,12 +28,19 @@ public class WSGetApiKey {
                         Log.d(RUTA + " POST Response", response);
                         Gson gson = new Gson();
                         ApiKey responseGetKey = gson.fromJson(response, ApiKey.class);
-                        return ApiKey;
+                        if (responseGetKey.getEstado().equalsIgnoreCase("OK")) {
+                            Log.d("ApiKeyValue", responseGetKey.getApi_key());
+                            Log.d("Cuota", responseGetKey.getCuota());
+                        } else {
+                            Log.d("msg", responseGetKey.getMsg());
+                        }
+                        //return Apikey;
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.e("errorxd", error.getMessage());
                         Log.e(RUTA + " POST Response", error.getMessage());
                     }
                 }) {
@@ -43,7 +51,6 @@ public class WSGetApiKey {
                 return params;
             }
         };
-
-
+   // return responseGetKey;
     }
 }
