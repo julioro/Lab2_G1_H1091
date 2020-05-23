@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.lab2_g1_h1091.R;
 import com.example.lab2_g1_h1091.entidades.Trabajo;
 
-public class ListaTrabajosAdapter extends RecyclerView.Adapter {
+public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdapter.TrabajoViewHolder> {
 
     private Trabajo[] data;
     private Context contexto;
@@ -24,7 +24,7 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter {
 
     public static class TrabajoViewHolder extends RecyclerView.ViewHolder{
 
-        TextView textView;
+        public TextView textView;
 
         public TrabajoViewHolder(View itemView) {
             super(itemView);
@@ -34,7 +34,7 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TrabajoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View itemView = LayoutInflater.from(contexto).inflate(R.layout.item_rv, parent, false);
         TrabajoViewHolder trabajoViewHolder = new TrabajoViewHolder(itemView);
@@ -43,13 +43,18 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(TrabajoViewHolder holder, int position) {
 
+        String mCurrent = data[position].getJobTitle() + " - " + data[position].getJobId() + "\n" +
+                "Salario: " + data[position].getMinSalary() +"-"+data[position].getMaxSalary();
+
+        holder.textView.setText(mCurrent);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+
+        return data.length;
     }
 
 
