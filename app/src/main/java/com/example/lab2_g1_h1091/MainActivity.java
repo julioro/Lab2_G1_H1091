@@ -46,5 +46,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Trabajo trabajo1 = new Trabajo("jefe","JEFE",1000,2000,"RUIZNAV");
+        Trabajo trabajo2 = new Trabajo("jefe1","JEFE1",2000,3000,"RUIZNAV");
+
+        Trabajo[] listaTrabajos = {trabajo1 ,trabajo2};
+
+        ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(listaTrabajos,MainActivity.this);
+        RecyclerView rV = findViewById(R.id.recyclerView1);
+        rV.setAdapter(adapter);
+        rV.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
     }
 }
