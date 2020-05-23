@@ -33,58 +33,66 @@ public class WebServices {
                     public void onResponse(String response) {
                         Log.d("getApiKeyRes", response);
                         Gson gson = new Gson();
-                        ApiKey responseGetKey = gson.fromJson(response, ApiKey.class);
-                        /*
+                        final ApiKey responseGetKey = gson.fromJson(response, ApiKey.class);
                         if (responseGetKey.getEstado().equalsIgnoreCase("OK")) {
-                            Log.d("Cuota", responseGetKey.getCuota());
-                            Log.d("ApiKeyValue", responseGetKey.getApi_key());
-                        } else {
-                            Log.d("msg", responseGetKey.getMsg());
-                        }
+                            switch (action) {
+                                case "listarEmpleados":
+                                    Log.d("Opcion", action);
+                                    Log.d("api-keyObtenida", responseGetKey.getApi_key());
+                                    // Apunto al URL par listar empleados.
+                                    String URL = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/empleados";
+                                    Log.d("urlListarEmpleados", URL);
+                                    StringRequest listarEmpleadosRequest = new StringRequest(StringRequest.Method.GET, URL,
+                                            new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    Log.d("res", "Request ok");
+                                                    Gson gson = new Gson();
+                                                    DtoEmpleados dtoEmpleados = gson.fromJson(response, DtoEmpleados.class);
+                                                    if (dtoEmpleados.getEstado().equals("ok")) {
+                                                        Log.d("res", "Response de request ok");
+                                                        Empleado[] empleados = dtoEmpleados.getEmpleados();
+                                                    } else {
+                                                        Log.d("res", "Response de request error");
+                                                        Log.d("msg", response.toString());
+                                                    }
 
-                         */
-                        switch (action) {
-                            case "listarEmpleados":
-                                Log.d("Opcion", action);
-                                // Apunto al URL par listar empleados.
-                                String URL = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/empleados?api-key=" + responseGetKey.getApi_key();
-                                StringRequest listarEmpleadosRequest = new StringRequest(StringRequest.Method.GET, URL,
-                                        new Response.Listener<String>() {
-                                            @Override
-                                            public void onResponse(String response) {
-                                                Log.d("res", "ok");
-                                                Gson gson = new Gson();
-                                                DtoEmpleados dtoEmpleados = gson.fromJson(response, DtoEmpleados.class);
-                                                Empleado[] empleados = dtoEmpleados.getEmpleados();
+                                                }
+                                            },
+                                            new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    Log.d("res", "err");
+                                                    Log.e("res", error.toString());
 
+                                                }
+                                            }) {
+                                        @Override
+                                        public Map<String, String> getHeaders() throws AuthFailureError {
+                                            Map<String,String> parametros = new HashMap<>();
+                                            parametros.put("api-key",responseGetKey.getApi_key());
+                                            return parametros;
+                                        }
+                                    };
 
-                                            }
-                                        },
-                                        new Response.ErrorListener() {
-                                            @Override
-                                            public void onErrorResponse(VolleyError error) {
-                                                Log.d("res", "err");
-                                                Log.e("res", error.toString());
+                                    rq.add(listarEmpleadosRequest);
+                                    break;
+                                case "listarTrabajos":
+                                    Log.d("Opcion", action);
+                                    break;
 
-                                            }
-                                        });
-                                rq.add(listarEmpleadosRequest);
-
-                                break;
-                            case "listarTrabajos":
-                                Log.d("Opcion", action);
-                                break;
-
+                            }
                         }
                     }
                 },
+                // ERROR AL PEDIR EL GROUP KEY
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("getApiKeyErr", error.getMessage());
                     }
-                }) {
-        };
+                }
+        );
         return stringRequest;
     }
 }
