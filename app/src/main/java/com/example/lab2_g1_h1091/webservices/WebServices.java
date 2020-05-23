@@ -9,9 +9,11 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.lab2_g1_h1091.entidades.ApiKey;
+import com.example.lab2_g1_h1091.entidades.Department;
 import com.example.lab2_g1_h1091.entidades.Empleado;
 import com.example.lab2_g1_h1091.entidades.Trabajo;
 import com.example.lab2_g1_h1091.utilitary.DtoBorrar;
+import com.example.lab2_g1_h1091.utilitary.DtoDepartment;
 import com.example.lab2_g1_h1091.utilitary.DtoEmpleado;
 import com.example.lab2_g1_h1091.utilitary.DtoTrabajo;
 import com.google.gson.Gson;
@@ -38,6 +40,49 @@ public class WebServices {
                         final ApiKey responseGetKey = gson.fromJson(response, ApiKey.class);
                         if (responseGetKey.getEstado().equalsIgnoreCase("OK")) {
                             switch (action) {
+                                case "listaDepartamentos":
+                                    Log.d("Opcion", action);
+                                    String URL_LISTAR_DEPARTAMENTO = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/departamentos";
+                                    StringRequest listarDepartamentosRequest = new StringRequest(StringRequest.Method.GET, URL_LISTAR_DEPARTAMENTO,
+                                            new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    Log.d("res", "Request ok");
+                                                    Gson gson = new Gson();
+                                                    DtoDepartment dtoDepartment = gson.fromJson(response, DtoDepartment.class);
+                                                    if (dtoDepartment.getEstado().equals("ok")) {
+                                                        Log.d("res", "Response de request ok");
+                                                        Department[] departamentos = dtoDepartment.getLista();
+                                                        /*
+                                                         *
+                                                         * Insertar logica que use departamentos.
+                                                         *
+                                                         * */
+
+
+                                                    } else {
+                                                        Log.d("msg", response.toString());
+                                                    }
+                                                }
+                                            },
+                                            new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    Log.e("res", error.toString());
+
+                                                }
+                                            }) {
+                                        @Override
+                                        public Map<String, String> getHeaders() throws AuthFailureError {
+                                            Map<String, String> params = new HashMap<>();
+                                            params.put("api-key", responseGetKey.getApi_key());
+                                            return params;
+                                        }
+                                    };
+                                    rq.add(listarDepartamentosRequest);
+                                    break;
+
+
                                 case "listaEmpleados":
                                     Log.d("Opcion", action);
                                     String URL_LISTAR_EMPLEADOS = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/empleados";
@@ -51,6 +96,11 @@ public class WebServices {
                                                     if (dtoEmpleado.getEstado().equals("ok")) {
                                                         Log.d("res", "Response de request ok");
                                                         Empleado[] empleados = dtoEmpleado.getLista();
+                                                        /*
+                                                         *
+                                                         * Insertar logica que use empleados.
+                                                         *
+                                                         * */
                                                     } else {
                                                         Log.d("msg", response.toString());
                                                     }
