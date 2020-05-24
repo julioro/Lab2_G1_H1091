@@ -1,9 +1,12 @@
 package com.example.lab2_g1_h1091.utilitary;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,20 +19,39 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
 
     private Trabajo[] data;
     private Context contexto;
+    private AdapterView.OnItemClickListener listener;
 
-    public ListaTrabajosAdapter(Trabajo[] data, Context contexto) {
+    public ListaTrabajosAdapter(Trabajo[] data, Context contexto, AdapterView.OnItemClickListener listener) {
         this.data = data;
         this.contexto = contexto;
+        this.listener = listener;
     }
 
     public static class TrabajoViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textView;
 
-        public TrabajoViewHolder(View itemView) {
+        public TrabajoViewHolder(View itemView,  final AdapterView.OnItemClickListener listener) {
             super(itemView);
             textView = itemView.findViewById(R.id.textView1);
+
+            Button btnBorrar;
+            btnBorrar = itemView.findViewById(R.id.button2);
+            btnBorrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null){
+                        String pos = String.valueOf(getAdapterPosition());
+                        Log.d("pos", pos);
+                    }
+                }
+            });
+
+
         }
+
+
+
     }
 
     @NonNull
@@ -37,7 +59,7 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
     public TrabajoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View itemView = LayoutInflater.from(contexto).inflate(R.layout.item_rv, parent, false);
-        TrabajoViewHolder trabajoViewHolder = new TrabajoViewHolder(itemView);
+        TrabajoViewHolder trabajoViewHolder = new TrabajoViewHolder(itemView, listener);
 
         return trabajoViewHolder;
     }

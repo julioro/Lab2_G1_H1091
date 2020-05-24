@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -78,7 +80,20 @@ public class MainActivity extends AppCompatActivity {
                                             DtoTrabajo dtoTrabajos = gson.fromJson(response, DtoTrabajo.class);
                                             if (dtoTrabajos.getEstado().equals("ok")) { // Si la consulta por lista de trabajos fue exitosa.
                                                 Trabajo[] trabajos = dtoTrabajos.getTrabajos();
-                                                ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(trabajos, MainActivity.this);
+
+
+
+                                                AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+                                                    @Override
+                                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                                    }
+                                                };
+
+                                                ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(trabajos, MainActivity.this, listener);
+
+
+
                                                 RecyclerView rV = findViewById(R.id.recyclerView1);
                                                 rV.setAdapter(adapter);
                                                 rV.setLayoutManager(new LinearLayoutManager(MainActivity.this));
