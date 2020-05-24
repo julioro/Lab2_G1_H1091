@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -42,8 +43,12 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menuItem1:
                 Intent intent = new Intent(this, EmpleadosActivity.class);
-                startActivity(intent);
+                int requetsCode_NewTrabajo = 1;
+                startActivityForResult(intent, requetsCode_NewTrabajo);
+
+                Toast.makeText(this, "Nuevo trabajo creado", Toast.LENGTH_SHORT);
                 return true;
+
             case R.id.menuItem2:
 
                 return true;
@@ -79,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                                         public void onResponse(String response) {
                                             Gson gson = new Gson();
                                             DtoTrabajo dtoTrabajos = gson.fromJson(response, DtoTrabajo.class);
-                                            Log.d("xd", "Estoy aca 3.");
+                                            Log.d("CUOTASSSSS", Integer.toString(dtoTrabajos.getCuota()));
                                             if (dtoTrabajos.getEstado().equals("ok")) { // Si la consulta por lista de trabajos fue exitosa.
                                                 Log.d("xd", "Estoy aca 4.");
 

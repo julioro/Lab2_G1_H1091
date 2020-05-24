@@ -18,11 +18,11 @@ public class Empleado {
     private String email;
     @Size(max=20)
     private String phoneNumber;
-    private Trabajo trabajo;
+    private Trabajo jobId;
     private Manager manager;
     private double salary;
     private double commissionPct;
-    private Department department;
+    private Department departmentId;
     @Size(max=7)
     private String createdBy;
 
@@ -32,11 +32,11 @@ public class Empleado {
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.trabajo = trabajo;
+        this.jobId = trabajo;
         this.manager = manager;
         this.salary = salary;
         this.commissionPct = commissionPct;
-        this.department = department;
+        this.departmentId = department;
         this.createdBy = createdBy;
     }
 
@@ -81,11 +81,11 @@ public class Empleado {
     }
 
     public Trabajo getTrabajo() {
-        return trabajo;
+        return jobId;
     }
 
     public void setTrabajo(Trabajo trabajo) {
-        this.trabajo = trabajo;
+        this.jobId = trabajo;
     }
 
     public Manager getManager() {
@@ -113,11 +113,11 @@ public class Empleado {
     }
 
     public Department getDepartment() {
-        return department;
+        return departmentId;
     }
 
     public void setDepartment(Department department) {
-        this.department = department;
+        this.departmentId = department;
     }
 
     public String getCreatedBy() {

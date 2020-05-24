@@ -15,8 +15,8 @@ import com.example.lab2_g1_h1091.entidades.Empleado;
 
 public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAdapter.EmpleadoViewHolder> {
 
-    Empleado[] data;
-    Context contexto;
+    private Empleado[] data;
+    private Context contexto;
 
     public ListaEmpleadosAdapter(Empleado[] lista, Context c) {
         this.data = lista;

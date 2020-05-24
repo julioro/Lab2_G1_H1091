@@ -9,6 +9,17 @@ public class Department {
     private String locationId;
     private String departmentShortName;
 
+    public Department() {
+
+    }
+
+    public Department(String departmentId, String departmentName, String managerId, String locationId, String departmentShortName) {
+        this.departmentId = departmentId;
+        this.departmentName = departmentName;
+        this.managerId = managerId;
+        this.locationId = locationId;
+        this.departmentShortName = departmentShortName;
+    }
 
     public String getDepartmentId() {
         return departmentId;

@@ -3,13 +3,10 @@ package com.example.lab2_g1_h1091.utilitary;
 import com.example.lab2_g1_h1091.entidades.Empleado;
 
 public class DtoEmpleado {
-
     private String estado;
-    private Empleado[] lista;
+    private Empleado[] empleados;
     private int cuota;
-    public int getCuota() {
-        return cuota;
-    }
+
 
     public String getEstado() {
         return estado;
@@ -19,25 +16,26 @@ public class DtoEmpleado {
         this.estado = estado;
     }
 
-    public Empleado[] getLista() {
-        return lista;
+    public Empleado[] getEmpleados() {
+        return empleados;
     }
 
-    public void setLista(Empleado[] lista) {
-        this.lista = lista;
+    public void setEmpleados(Empleado[] empleados) {
+        this.empleados = empleados;
+    }
+
+    public int getCuota() {
+        return cuota;
     }
 
     public void setCuota(int cuota) {
         this.cuota = cuota;
     }
 
-    public DtoEmpleado(){
-
-    }
 
     public DtoEmpleado(String estado, Empleado[] lista, int cuota) {
         this.estado = estado;
-        this.lista = lista;
+        this.empleados = lista;
         this.cuota = cuota;
     }
 }
