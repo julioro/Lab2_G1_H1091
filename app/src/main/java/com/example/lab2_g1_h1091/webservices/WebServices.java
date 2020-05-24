@@ -52,7 +52,7 @@ public class WebServices {
                                                     DtoEmpleado dtoEmpleado = gson.fromJson(response, DtoEmpleado.class);
                                                     if (dtoEmpleado.getEstado().equals("ok")) {
                                                         Log.d("res", "Response de request ok");
-                                                        Empleado[] empleados = dtoEmpleado.getLista();
+                                                        Empleado[] empleados = dtoEmpleado.getEmpleados();
                                                     } else {
                                                         Log.d("res", "Response de request error");
                                                         Log.d("msg", response.toString());
