@@ -5,6 +5,7 @@ import com.example.lab2_g1_h1091.entidades.Trabajo;
 public class DtoTrabajo {
 
     private String estado;
+    private int cuota;
     private Trabajo[] trabajos;
 
     public int getCuota() {
@@ -21,9 +22,10 @@ public class DtoTrabajo {
 
     }
 
-    public DtoTrabajo(String estado, Trabajo[] trabajos){
+    public DtoTrabajo(String estado,int cuota, Trabajo[] trabajos){
         this.estado = estado;
         this.trabajos = trabajos;
+        this.cuota = cuota;
     }
 
     public String getEstado() {
@@ -40,5 +42,13 @@ public class DtoTrabajo {
 
     public void setTrabajos(Trabajo[] trabajos) {
         this.trabajos = trabajos;
+    }
+
+    public int getCuota() {
+        return cuota;
+    }
+
+    public void setCuota(int cuota) {
+        this.cuota = cuota;
     }
 }

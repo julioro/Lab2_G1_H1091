@@ -1,9 +1,22 @@
 package com.example.lab2_g1_h1091.utilitary;
+
 import com.example.lab2_g1_h1091.entidades.Department;
+
 public class DtoDepartment {
+
     private String estado;
     private int cuota;
-    private Department[] departamentos;
+    private Department[] lista;
+
+    public DtoDepartment(String estado) {
+
+    }
+
+    public DtoDepartment(String estado, int cuota, Department[] lista) {
+        this.estado = estado;
+        this.cuota = cuota;
+        this.lista = lista;
+    }
 
     public String getEstado() {
         return estado;
@@ -21,13 +34,11 @@ public class DtoDepartment {
         this.cuota = cuota;
     }
 
-    public Department[] getDepartamentos() {
-        return departamentos;
+    public Department[] getLista() {
+        return lista;
     }
 
-    public void setDepartamentos(Department[] departamentos) {
-        this.departamentos = departamentos;
+    public void setLista(Department[] lista) {
+        this.lista = lista;
     }
-
-
 }
