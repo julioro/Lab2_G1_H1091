@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.menuItem1:
-                Intent intent = new Intent(this, EmpleadosActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
+                //Intent intent = new Intent(this, EmpleadoActPrueba.class);
                 startActivity(intent);
                 return true;
             case R.id.menuItem2:
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                                             Gson gson = new Gson();
                                             DtoTrabajo dtoTrabajos = gson.fromJson(response, DtoTrabajo.class);
                                             if (dtoTrabajos.getEstado().equals("ok")) { // Si la consulta por lista de trabajos fue exitosa.
-                                                Trabajo[] trabajos = dtoTrabajos.getTrabajos();
+                                                final Trabajo[] trabajos = dtoTrabajos.getTrabajos();
 
 
 
@@ -91,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
                                                 };
 
                                                 ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(trabajos, MainActivity.this, listener);
-
 
 
                                                 RecyclerView rV = findViewById(R.id.recyclerView1);
@@ -134,16 +134,27 @@ public class MainActivity extends AppCompatActivity {
 
         requestQueue.add(getApiKeyRequest);
 
-    /*
-        Trabajo trabajo1 = new Trabajo("jefe", "JEFE", 1000, 2000, "RUIZNAV");
-        Trabajo trabajo2 = new Trabajo("jefe1", "JEFE1", 2000, 3000, "RUIZNAV");
-
-        Trabajo[] listaTrabajos = {trabajo1, trabajo2};
-
-        ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(listaTrabajos, MainActivity.this);
-        RecyclerView rV = findViewById(R.id.recyclerView1);
-        rV.setAdapter(adapter);
-        rV.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-*/
     }
+
+
+
+public void borrarTrabajo(String idTrabajo){
+    String URL_TARGET_BORRAR_TRABAJO = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/borrar/trabajo?id=" + idTrabajo;
+    StringRequest borrarTrabajoRequest = new StringRequest(StringRequest.Method.DELETE, URL_TARGET_BORRAR_TRABAJO,
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+
+                }
+            },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }){
+    };
+    RequestQueue requestQueue = Volley.newRequestQueue(this);
+    requestQueue.add(borrarTrabajoRequest);
+}
 }
