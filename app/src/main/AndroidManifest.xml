@@ -16,10 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EmpleadosActivity"
-                    android:label="@string/empleados_activity_title">
-
-        </activity>
+        <activity
+            android:name=".EmpleadosActivity"
+            android:label="@string/empleados_activity_title"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/main_activity_title">

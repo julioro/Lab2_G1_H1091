@@ -11,6 +11,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.lab2_g1_h1091.entidades.ApiKey;
 import com.example.lab2_g1_h1091.entidades.Empleado;
 import com.example.lab2_g1_h1091.entidades.Trabajo;
+import com.example.lab2_g1_h1091.utilitary.DtoEmpleado;
 import com.example.lab2_g1_h1091.utilitary.DtoTrabajo;
 import com.google.gson.Gson;
 
@@ -48,10 +49,10 @@ public class WebServices {
                                                 public void onResponse(String response) {
                                                     Log.d("res", "Request ok");
                                                     Gson gson = new Gson();
-                                                    DtoEmpleados dtoEmpleados = gson.fromJson(response, DtoEmpleados.class);
-                                                    if (dtoEmpleados.getEstado().equals("ok")) {
+                                                    DtoEmpleado dtoEmpleado = gson.fromJson(response, DtoEmpleado.class);
+                                                    if (dtoEmpleado.getEstado().equals("ok")) {
                                                         Log.d("res", "Response de request ok");
-                                                        Empleado[] empleados = dtoEmpleados.getEmpleados();
+                                                        Empleado[] empleados = dtoEmpleado.getLista();
                                                     } else {
                                                         Log.d("res", "Response de request error");
                                                         Log.d("msg", response.toString());

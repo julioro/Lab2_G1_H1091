@@ -10,6 +10,23 @@ public class DtoEmpleado {
     public int getCuota() {
         return cuota;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Empleado[] getLista() {
+        return lista;
+    }
+
+    public void setLista(Empleado[] lista) {
+        this.lista = lista;
+    }
+
     public void setCuota(int cuota) {
         this.cuota = cuota;
     }
