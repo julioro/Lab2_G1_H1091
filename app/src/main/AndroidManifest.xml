@@ -16,10 +16,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".formularioTrabajo2"></activity>
+        <activity
+            android:name=".formularioEmpleado"
+            android:label="@string/formulario_empleado_title">
+
+        </activity>
+        <activity
+            android:name=".formularioTrabajo2"
+            android:label="@string/formulario_trabajo_title"/>
         <activity
             android:name=".EmpleadosActivity"
-            android:label="@string/empleados_activity_title"></activity>
+            android:label="@string/empleados_activity_title" />
         <activity
             android:name=".MainActivity"
             android:label="@string/main_activity_title">
