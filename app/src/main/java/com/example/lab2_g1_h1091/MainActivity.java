@@ -30,13 +30,17 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.menuItem1:
                 Intent intent = new Intent(this, EmpleadosActivity.class);
-                int requetsCode_NewTrabajo = 1;
-                startActivityForResult(intent,requetsCode_NewTrabajo);
+                int requetsCode_Empleados = 2;
+                startActivityForResult(intent,requetsCode_Empleados);
 
-                Toast.makeText(this,"Nuevo trabajo creado",Toast.LENGTH_SHORT);
                 return true;
 
             case R.id.menuItem2:
+                Intent intent2 = new Intent(this, formularioTrabajo2.class);
+                int requetsCode_NewTrabajo = 1;
+                startActivityForResult(intent2,requetsCode_NewTrabajo);
+
+                Toast.makeText(this,"Nuevo trabajo creado",Toast.LENGTH_SHORT);
 
                 return true;
 
