@@ -3,29 +3,20 @@ package com.example.lab2_g1_h1091.entidades;
 public class Department {
 
 
-    private String departmentId;
+    private int departmentId;
     private String departmentName;
-    private String managerId;
-    private String locationId;
+
     private String departmentShortName;
 
     public Department() {
 
     }
 
-    public Department(String departmentId, String departmentName, String managerId, String locationId, String departmentShortName) {
-        this.departmentId = departmentId;
-        this.departmentName = departmentName;
-        this.managerId = managerId;
-        this.locationId = locationId;
-        this.departmentShortName = departmentShortName;
-    }
-
-    public String getDepartmentId() {
+    public int getDepartmentId() {
         return departmentId;
     }
 
-    public void setDepartmentId(String departmentId) {
+    public void setDepartmentId(int departmentId) {
         this.departmentId = departmentId;
     }
 
@@ -37,27 +28,18 @@ public class Department {
         this.departmentName = departmentName;
     }
 
-    public String getManagerId() {
-        return managerId;
-    }
-
-    public void setManagerId(String managerId) {
-        this.managerId = managerId;
-    }
-
-    public String getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(String locationId) {
-        this.locationId = locationId;
-    }
-
     public String getDepartmentShortName() {
         return departmentShortName;
     }
 
     public void setDepartmentShortName(String departmentShortName) {
+        this.departmentShortName = departmentShortName;
+    }
+
+    public Department(int departmentId, String departmentName, String managerId, int locationId, String departmentShortName) {
+        this.departmentId = departmentId;
+        this.departmentName = departmentName;
+
         this.departmentShortName = departmentShortName;
     }
 

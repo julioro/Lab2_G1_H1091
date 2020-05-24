@@ -41,6 +41,7 @@ public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAd
     @Override
     public EmpleadoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(contexto).inflate(R.layout.item_rv, parent, false);
+
         EmpleadoViewHolder EmpleadoViewHolder = new EmpleadoViewHolder(itemView);
 
         return EmpleadoViewHolder;

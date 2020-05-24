@@ -84,10 +84,12 @@
         android:id="@+id/spinnerDepartment"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textLayout3"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/textLayout3" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.725" />
 
     <Button
         android:id="@+id/buttonAceptarForm"
@@ -96,10 +98,10 @@
         android:text="Aceptar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.27"
+        app:layout_constraintHorizontal_bias="0.173"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.71000004" />
+        app:layout_constraintVertical_bias="0.878" />
 
     <Button
         android:id="@+id/buttonCancelarForm"

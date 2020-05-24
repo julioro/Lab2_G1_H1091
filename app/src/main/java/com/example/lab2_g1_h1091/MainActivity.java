@@ -58,8 +58,19 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.menuItem2:
+                Intent intent2 = new Intent(this, formularioTrabajo2.class);
+                int requetsCode_NewTrabajo2 = 2;
+
+                startActivityForResult(intent2, requetsCode_NewTrabajo2);
+
+                Toast.makeText(this, "Nuevo trabajo creado", Toast.LENGTH_SHORT);
+
+                startActivityForResult(intent2, requetsCode_NewTrabajo2);
+
+                Toast.makeText(this, "Nuevo trabajo creado", Toast.LENGTH_SHORT);
 
                 return true;
+
 
         }
 
@@ -79,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("xd", "Estoy aca 1.");
+
                         Gson gson = new Gson();
                         final ApiKey responseGetKey = gson.fromJson(response, ApiKey.class);
                         if (responseGetKey.getEstado().equals("ok")) { // Si la consulta fue realziada exitosamente por el apikey.
-                            Log.d("xd", "Estoy aca 2.");
+
                             // Se procede a pedir la lista de trabajos.
                             String URL_TARGET_LISTA_TRABAJOS = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/trabajos";
                             StringRequest listarTrabajosRequest = new StringRequest(StringRequest.Method.GET, URL_TARGET_LISTA_TRABAJOS,
@@ -94,10 +105,9 @@ public class MainActivity extends AppCompatActivity {
                                             DtoTrabajo dtoTrabajos = gson.fromJson(response, DtoTrabajo.class);
                                             Log.d("CUOTASSSSS", Integer.toString(dtoTrabajos.getCuota()));
                                             if (dtoTrabajos.getEstado().equals("ok")) { // Si la consulta por lista de trabajos fue exitosa.
-                                                Log.d("xd", "Estoy aca 4.");
-
 
                                                 Trabajo[] trabajos = dtoTrabajos.getTrabajos();
+
                                                 ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(trabajos, MainActivity.this);
                                                 RecyclerView rV = findViewById(R.id.recyclerView1);
                                                 rV.setAdapter(adapter);

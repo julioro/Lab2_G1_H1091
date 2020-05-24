@@ -6,7 +6,7 @@ public class DtoDepartment {
 
     private String estado;
     private int cuota;
-    private Department[] lista;
+    private Department[] departamentos;
 
     public DtoDepartment(String estado) {
 
@@ -15,7 +15,7 @@ public class DtoDepartment {
     public DtoDepartment(String estado, int cuota, Department[] lista) {
         this.estado = estado;
         this.cuota = cuota;
-        this.lista = lista;
+        this.departamentos = lista;
     }
 
     public String getEstado() {
@@ -34,11 +34,11 @@ public class DtoDepartment {
         this.cuota = cuota;
     }
 
-    public Department[] getLista() {
-        return lista;
+    public Department[] getdepartamentos() {
+        return departamentos;
     }
 
-    public void setLista(Department[] lista) {
-        this.lista = lista;
+    public void setdepartamentos(Department[] lista) {
+        this.departamentos = lista;
     }
 }
