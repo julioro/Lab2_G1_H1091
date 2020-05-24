@@ -15,6 +15,7 @@ import com.example.lab2_g1_h1091.entidades.Trabajo;
 import com.example.lab2_g1_h1091.utilitary.DtoBorrar;
 import com.example.lab2_g1_h1091.utilitary.DtoDepartment;
 import com.example.lab2_g1_h1091.utilitary.DtoEmpleado;
+import com.example.lab2_g1_h1091.utilitary.DtoGuardar;
 import com.example.lab2_g1_h1091.utilitary.DtoTrabajo;
 import com.google.gson.Gson;
 
@@ -40,6 +41,57 @@ public class WebServices {
                         final ApiKey responseGetKey = gson.fromJson(response, ApiKey.class);
                         if (responseGetKey.getEstado().equalsIgnoreCase("OK")) {
                             switch (action) {
+                                case "guardarTrabajo":
+                                    String URL_GUARDAR_TRABAJO = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/trabajo";
+                                    StringRequest guardarTrabajoRequest = new StringRequest(StringRequest.Method.POST, URL_GUARDAR_TRABAJO,
+                                            new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    Gson gson = new Gson();
+                                                    DtoGuardar dtoGuardar = gson.fromJson(response, DtoGuardar.class);
+                                                    if (dtoGuardar.getEstado().equals("ok")) {
+                                                        Log.d("res", "Response de request ok");
+
+                                                        /*
+                                                         *
+                                                         * Insertar logica que use departamentos.
+                                                         *
+                                                         * */
+
+
+                                                    } else {
+                                                        Log.d("msg", response.toString());
+                                                    }
+                                                }
+                                            },
+                                            new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+
+                                                }
+                                            }) {
+                                        @Override
+                                        public Map<String, String> getHeaders() throws AuthFailureError {
+                                            Map<String, String> params = new HashMap<>();
+                                            params.put("api-key", responseGetKey.getApi_key());
+                                            return params;
+                                        }
+
+                                        @Override
+                                        protected Map<String, String> getParams() throws AuthFailureError {
+                                            Map<String,String> parametros = new HashMap<>();
+                                            parametros.put("jobId",jobId);
+                                            parametros.put("jobTitle",nombreTrabajo);
+                                            parametros.put("minSalary",salarioMin);
+                                            parametros.put("maxSalary",salarioMax);
+                                            parametros.put("createdBy","grupo_6");
+                                            return parametros;
+                                        }
+                                    };
+
+                                    rq.add(guardarTrabajoRequest);
+                                    break;
+
                                 case "listaDepartamentos":
                                     Log.d("Opcion", action);
                                     String URL_LISTAR_DEPARTAMENTO = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/departamentos";
