@@ -80,10 +80,10 @@ public class WebServices {
                                         @Override
                                         protected Map<String, String> getParams() throws AuthFailureError {
                                             Map<String,String> parametros = new HashMap<>();
-                                            parametros.put("jobId",jobId);
+                                           /* parametros.put("jobId",jobId);
                                             parametros.put("jobTitle",nombreTrabajo);
                                             parametros.put("minSalary",salarioMin);
-                                            parametros.put("maxSalary",salarioMax);
+                                            parametros.put("maxSalary",salarioMax);*/
                                             parametros.put("createdBy","grupo_6");
                                             return parametros;
                                         }
