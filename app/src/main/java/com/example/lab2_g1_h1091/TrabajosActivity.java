@@ -70,19 +70,16 @@ public class TrabajosActivity extends AppCompatActivity {
                         ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(trabajos, TrabajosActivity.this, new ListaTrabajosAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(final int position, boolean borrar) {
-                                Log.d("msgxd", "estoy acanga");
                                 if (borrar) {
                                     ws.borrarTrabajo(listaTrabajos[position].getJobId(), rq, new VolleyCallback() {
                                         @Override
                                         public void onSuccess(Object result) {
-                                            Log.d("msgxd", result.toString());
-                                            Log.d("msgxd", "DsadasdddD");
-
 
                                             boolean parse = ((boolean) result);
-                                            Log.d("msgxd", "estoy asdads");
-                                            String msg = (parse) ? "Borrado exitos.\nNo se pudo sacaar de la lista." : "No se pudo borrar";
-                                            Toast.makeText(TrabajosActivity.this, msg, Toast.LENGTH_LONG);
+                                            String msg = (parse) ? "Borrado exitos, pero no se pudo sacaar de la lista." : "No se pudo borrar";
+                                            Log.d("msgxd", msg);
+
+                                            Toast.makeText(TrabajosActivity.this, msg, Toast.LENGTH_LONG).show();
 
                                             if (parse) { // Sacarlo de la lista.
                                                 //listaTrabajos.remove(position);

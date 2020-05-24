@@ -62,15 +62,14 @@ public class WebServicesCallbacks {
                         DtoBorrar dtoBorrar = gson.fromJson(response, DtoBorrar.class);
                         Log.d("msgxd", dtoBorrar.getEstado());
                         Log.d("msgxd", String.valueOf(dtoBorrar.getCuota()));
-
-                        if (!dtoBorrar.getEstado().equalsIgnoreCase("error")) {
-
-                            callback.onSuccess(true); // se borro ok.
+                        Log.d("msgxdestado", dtoBorrar.getEstado());
+                        if (dtoBorrar.getEstado().equalsIgnoreCase("error")) {
+                            callback.onSuccess(false); // no se borro ok.
                             //Toast.makeText(TrabajosActivity.this, "Borrado exitoso", Toast.LENGTH_LONG);
                         } else {
                             Log.d("msgxd", "asdasddddd");
 
-                            callback.onSuccess(false); // no se pudo borrrar.
+                            callback.onSuccess(true); //  se pudo borrrar.
                             //Toast.makeText(TrabajosActivity.this, "Borrado exitoso", Toast.LENGTH_LONG);
                         }
                     }
