@@ -65,5 +65,7 @@ public class MainActivity extends AppCompatActivity {
         rV.setAdapter(adapter);
         rV.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
+
+
     }
 }

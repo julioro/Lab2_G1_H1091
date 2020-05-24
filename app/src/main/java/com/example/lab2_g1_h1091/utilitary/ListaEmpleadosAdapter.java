@@ -17,6 +17,16 @@ public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAd
 
     private Empleado[] data;
     private Context contexto;
+    private OnEmpleadoClickListener mListener;
+
+    public interface OnEmpleadoClickListener {
+        void OnEditarClick(int position);
+        //void OnBorrarClick(int position);
+    }
+
+    public void setOnEmpleadoClickListener(OnEmpleadoClickListener listener){
+        this.mListener = listener;
+    }
 
     public ListaEmpleadosAdapter(Empleado[] lista, Context c) {
         this.data = lista;
@@ -30,19 +40,33 @@ public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAd
         Button button1;
         Button button2;
 
-        public EmpleadoViewHolder(View itemView) {
+        public EmpleadoViewHolder(View itemView, final OnEmpleadoClickListener listener) {
             super(itemView);
             textView = itemView.findViewById(R.id.textView1);
             button1 = itemView.findViewById(R.id.button1);
             button2 = itemView.findViewById(R.id.button2);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            listener.OnEditarClick(position);
+                        }
+                    }
+                }
+            });
+
         }
+
     }
 
     @NonNull
     @Override
     public EmpleadoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(contexto).inflate(R.layout.item_rv, parent, false);
-        EmpleadoViewHolder EmpleadoViewHolder = new EmpleadoViewHolder(itemView);
+        EmpleadoViewHolder EmpleadoViewHolder = new EmpleadoViewHolder(itemView, mListener);
 
         return EmpleadoViewHolder;
 
