@@ -24,6 +24,7 @@ public class formularioEmpleado extends AppCompatActivity {
     private Empleado[] listaEmpleados;
     private String[] listaEmpleados_Nombres;
     private int index_selectedEmpleado;
+    private int ultimoEmpleado_numero;
 
     private Trabajo[] listaTrabajos;
     private String[] listaTrabajos_Nombres;
@@ -75,23 +76,27 @@ public class formularioEmpleado extends AppCompatActivity {
 
 
         //Boton "Aceptar"
-        final Button button1 = findViewById(R.id.buttonAceptarForm);
+        final Button button1 = findViewById(R.id.buttonAceptarFormEmpleado);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                EditText inputTitle = findViewById(R.id.inputTitle);
-                String jobTitle = inputTitle.getText().toString();
-                EditText inputMinSalary = findViewById(R.id.inputMinSalary);
-                String minSalary = inputMinSalary.getText().toString();
-                EditText inputMaxSalary = findViewById(R.id.inputMaxSalary);
-                String maxSalary = inputMaxSalary.getText().toString();
-                EditText inputAbreviation = findViewById(R.id.inputAbreviacion);
-                String Abreviation = inputAbreviation.getText().toString();
+                EditText inputNombre = findViewById(R.id.inputNombre);
+                String Nombre = inputNombre.getText().toString();
+                EditText inputApellido = findViewById(R.id.inputApellido);
+                String Apellido = inputApellido.getText().toString();
+                EditText inputCorreo = findViewById(R.id.inputCorreo);
+                String Correo = inputCorreo.getText().toString();
+                EditText inputTelefono = findViewById(R.id.inputTelefono);
+                String Telefono = inputTelefono.getText().toString();
+                EditText inputSalario = findViewById(R.id.inputSalario);
+                String Salario = inputSalario.getText().toString();
+                EditText inputComision = findViewById(R.id.inputComision);
+                String Comision = inputComision.getText().toString();
 
                 Department selectedDepartment = listaDepartments[index_selectedDepartment];
                 String departmentShortName = selectedDepartment.getDepartmentShortName();
-                String jobId = departmentShortName + "_" + Abreviation;
+                String employeeId = (ultimoEmpleado_numero + 1) + "_" + departmentShortName;
 
 
                 Intent intent = new Intent();
@@ -101,7 +106,7 @@ public class formularioEmpleado extends AppCompatActivity {
         });
 
         //Boton "Cancelar"
-        final Button button2 = findViewById(R.id.buttonCancelarForm);
+        final Button button2 = findViewById(R.id.buttonCancelarFormEmpleado);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

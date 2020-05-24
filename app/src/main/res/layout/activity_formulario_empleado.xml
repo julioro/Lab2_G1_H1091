@@ -108,6 +108,20 @@
                 android:inputType="number" />
 
             <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Comision"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/inputComision"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+
+            <TextView
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
