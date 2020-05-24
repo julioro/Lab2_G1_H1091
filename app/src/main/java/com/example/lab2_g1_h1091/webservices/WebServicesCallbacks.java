@@ -1,16 +1,19 @@
 package com.example.lab2_g1_h1091.webservices;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.lab2_g1_h1091.TrabajosActivity;
 import com.example.lab2_g1_h1091.VolleyCallback;
 import com.example.lab2_g1_h1091.entidades.ApiKey;
 import com.example.lab2_g1_h1091.entidades.Empleado;
 import com.example.lab2_g1_h1091.entidades.Trabajo;
+import com.example.lab2_g1_h1091.utilitary.DtoBorrar;
 import com.example.lab2_g1_h1091.utilitary.DtoEmpleado;
 import com.example.lab2_g1_h1091.utilitary.DtoTrabajo;
 import com.google.gson.Gson;
@@ -22,6 +25,7 @@ public class WebServicesCallbacks {
     ApiKey apikey;
     Gson gson;
     final String GROUP_KEY = "WfnNf52Wsw6p6N8gVPFF";
+    Trabajo[] trabajos;
 
     public void getApiKey(RequestQueue rq, final VolleyCallback callback) {
         Log.d("msgxd", "getApiKeyCall");
@@ -45,6 +49,54 @@ public class WebServicesCallbacks {
 
         rq.add(apiReq);
     }
+    public void borrarTrabajo(String idTrabajo, RequestQueue rq, final VolleyCallback callback){
+    if (apikey.getCuota()>0){
+        Log.d("msgxd", "estoy acangaidtraabajo " + idTrabajo);
+        String URL_TARGET_BORRAR_TRABAJO = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/borrar/trabajo?id=" + idTrabajo;
+        StringRequest borrarTrabajoRequest = new StringRequest(StringRequest.Method.DELETE, URL_TARGET_BORRAR_TRABAJO,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("msgxd", "borrado response ok ");
+                        Gson gson = new Gson();
+                        DtoBorrar dtoBorrar = gson.fromJson(response, DtoBorrar.class);
+                        Log.d("msgxd", dtoBorrar.getEstado());
+                        Log.d("msgxd", String.valueOf(dtoBorrar.getCuota()));
+
+                        if (!dtoBorrar.getEstado().equalsIgnoreCase("error")) {
+
+                            callback.onSuccess(true); // se borro ok.
+                            //Toast.makeText(TrabajosActivity.this, "Borrado exitoso", Toast.LENGTH_LONG);
+                        } else {
+                            Log.d("msgxd", "asdasddddd");
+
+                            callback.onSuccess(false); // no se pudo borrrar.
+                            //Toast.makeText(TrabajosActivity.this, "Borrado exitoso", Toast.LENGTH_LONG);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("msgxd", "estoy acangaerror");
+                        Log.e("error", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                Log.d("msgxd", "estoy acanga"+apikey.getApi_key());
+                params.put("api-key", apikey.getApi_key());
+                return params;
+            }
+        };
+        rq.add(borrarTrabajoRequest);
+    }
+
+    }
+
+
+
 
     public void listarTrabajos(RequestQueue rq, final VolleyCallback callback) {
         if (apikey.getCuota() > 0) {
@@ -53,12 +105,12 @@ public class WebServicesCallbacks {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            apikey.setCuota(apikey.getCuota()-1); // Disminuir la cuota
+                            apikey.setCuota(apikey.getCuota() - 1); // Disminuir la cuota
                             gson = new Gson();
                             DtoTrabajo dtoTrabajos = gson.fromJson(response, DtoTrabajo.class);
                             if (dtoTrabajos.getEstado().equals("ok")) {
                                 Log.d("res", "Response de request ok");
-                                Trabajo[] trabajos = dtoTrabajos.getTrabajos();
+                                trabajos = dtoTrabajos.getTrabajos();
                                 callback.onSuccess(trabajos);
                             } else {
                                 Log.d("msg", response.toString());
@@ -82,7 +134,7 @@ public class WebServicesCallbacks {
             rq.add(listarTrabajosRequest);
         }
     }
-
+/*
     public void listarEmpleados(RequestQueue rq, final VolleyCallback callback) {
         if (apikey.getCuota() > 0) {
             String URL_LISTAR_EMPLEADOS = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/empleados";
@@ -119,5 +171,6 @@ public class WebServicesCallbacks {
             rq.add(listarEmpleadosRequest);
         }
     }
+*/
 
 }

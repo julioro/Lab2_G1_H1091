@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -81,23 +79,17 @@ public class MainActivity extends AppCompatActivity {
                                             DtoTrabajo dtoTrabajos = gson.fromJson(response, DtoTrabajo.class);
                                             if (dtoTrabajos.getEstado().equals("ok")) { // Si la consulta por lista de trabajos fue exitosa.
                                                 final Trabajo[] trabajos = dtoTrabajos.getTrabajos();
-
-
-
-                                                AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+                                                /*ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(trabajos, MainActivity.this, new ListaTrabajosAdapter.OnItemClickListener() {
                                                     @Override
-                                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                                    public void onItemClick(int position) {
 
                                                     }
-                                                };
-
-                                                ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(trabajos, MainActivity.this, listener);
-
+                                                });
 
                                                 RecyclerView rV = findViewById(R.id.recyclerView1);
                                                 rV.setAdapter(adapter);
                                                 rV.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
+*/
                                             } else {
                                                 Log.e("error", response.toString());
                                             }
@@ -137,24 +129,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void borrarTrabajo(String idTrabajo) {
 
-public void borrarTrabajo(String idTrabajo){
-    String URL_TARGET_BORRAR_TRABAJO = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/borrar/trabajo?id=" + idTrabajo;
-    StringRequest borrarTrabajoRequest = new StringRequest(StringRequest.Method.DELETE, URL_TARGET_BORRAR_TRABAJO,
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
 
-                }
-            },
-            new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
 
-                }
-            }){
-    };
-    RequestQueue requestQueue = Volley.newRequestQueue(this);
-    requestQueue.add(borrarTrabajoRequest);
-}
+        String URL_TARGET_BORRAR_TRABAJO = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/borrar/trabajo?id=" + idTrabajo;
+        StringRequest borrarTrabajoRequest = new StringRequest(StringRequest.Method.DELETE, URL_TARGET_BORRAR_TRABAJO,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(borrarTrabajoRequest);
+    }
 }

@@ -10,12 +10,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.example.lab2_g1_h1091.R;
 import com.example.lab2_g1_h1091.entidades.ApiKey;
 import com.example.lab2_g1_h1091.entidades.Trabajo;
 import com.example.lab2_g1_h1091.utilitary.ListaTrabajosAdapter;
@@ -50,16 +48,14 @@ public class TrabajosActivity extends AppCompatActivity {
     }
 
     ApiKey apikey;
+    Trabajo[] listaTrabajos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trabajos);
-
         final RequestQueue rq = Volley.newRequestQueue(this);
         final WebServicesCallbacks ws = new WebServicesCallbacks();
-
-
         ws.getApiKey(rq, new VolleyCallback() {
             @Override
             public void onSuccess(Object result) {
@@ -68,18 +64,42 @@ public class TrabajosActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Object result) {
                         Trabajo[] trabajos = (Trabajo[]) result;
+                        listaTrabajos = trabajos;
                         // Recycler view logica:
-                        AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                            }
-                        };
-                        ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(trabajos, TrabajosActivity.this, listener);
                         RecyclerView rV = findViewById(R.id.recyclerView1);
+                        ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(trabajos, TrabajosActivity.this, new ListaTrabajosAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(final int position, boolean borrar) {
+                                Log.d("msgxd", "estoy acanga");
+                                if (borrar) {
+                                    ws.borrarTrabajo(listaTrabajos[position].getJobId(), rq, new VolleyCallback() {
+                                        @Override
+                                        public void onSuccess(Object result) {
+                                            Log.d("msgxd", result.toString());
+                                            Log.d("msgxd", "DsadasdddD");
+
+
+                                            boolean parse = ((boolean) result);
+                                            Log.d("msgxd", "estoy asdads");
+                                            String msg = (parse) ? "Borrado exitos.\nNo se pudo sacaar de la lista." : "No se pudo borrar";
+                                            Toast.makeText(TrabajosActivity.this, msg, Toast.LENGTH_LONG);
+
+                                            if (parse) { // Sacarlo de la lista.
+                                                //listaTrabajos.remove(position);
+                                                // Me sale que no soporta el metodo remove.
+
+                                            }
+
+                                        }
+                                    });
+                                } else {
+                                    //editarTrabajo(listaTrabajos[position].getJobId());
+                                }
+                            }
+                        });
+
                         rV.setAdapter(adapter);
                         rV.setLayoutManager(new LinearLayoutManager(TrabajosActivity.this));
-
 
 
                     }
