@@ -8,8 +8,6 @@ public class DtoTrabajo {
     private int cuota;
     private Trabajo[] trabajos;
 
-
-
     public DtoTrabajo(){
 
     }

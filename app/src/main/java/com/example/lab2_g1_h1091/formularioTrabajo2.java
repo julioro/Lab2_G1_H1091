@@ -22,6 +22,7 @@ public class formularioTrabajo2 extends AppCompatActivity {
     private int index_selectedDepartment;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,7 @@ public class formularioTrabajo2 extends AppCompatActivity {
 
             }
         });
+
 
 
         //Boton "Aceptar"

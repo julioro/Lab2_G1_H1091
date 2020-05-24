@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.lab2_g1_h1091.entidades.ApiKey;
+
 import com.example.lab2_g1_h1091.entidades.Trabajo;
 import com.example.lab2_g1_h1091.utilitary.DtoTrabajo;
 import com.example.lab2_g1_h1091.utilitary.ListaTrabajosAdapter;
@@ -44,9 +46,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuItem1:
                 Intent intent = new Intent(this, EmpleadosActivity.class);
                 int requetsCode_NewTrabajo = 1;
+
                 startActivityForResult(intent, requetsCode_NewTrabajo);
 
                 Toast.makeText(this, "Nuevo trabajo creado", Toast.LENGTH_SHORT);
+
+                startActivityForResult(intent, requetsCode_NewTrabajo);
+
+                Toast.makeText(this, "Nuevo trabajo creado", Toast.LENGTH_SHORT);
+
                 return true;
 
             case R.id.menuItem2:
