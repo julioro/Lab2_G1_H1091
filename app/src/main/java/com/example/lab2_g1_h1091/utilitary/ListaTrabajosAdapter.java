@@ -27,29 +27,19 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
         this.listener = listener;
     }
 
-    public static class TrabajoViewHolder extends RecyclerView.ViewHolder{
+    public static class TrabajoViewHolder extends RecyclerView.ViewHolder {
 
         public TextView textView;
 
-        public TrabajoViewHolder(View itemView,  final AdapterView.OnItemClickListener listener) {
+        public TrabajoViewHolder(View itemView, final AdapterView.OnItemClickListener listener) {
             super(itemView);
             textView = itemView.findViewById(R.id.textView1);
 
-            Button btnBorrar;
-            btnBorrar = itemView.findViewById(R.id.button2);
-            btnBorrar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null){
-                        String pos = String.valueOf(getAdapterPosition());
-                        Log.d("pos", pos);
-                    }
-                }
-            });
+            Button btnBorrar = itemView.findViewById(R.id.btnBorrar);
+            Button btnEditar = itemView.findViewById(R.id.btnEditar);
 
 
         }
-
 
 
     }
@@ -68,7 +58,7 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
     public void onBindViewHolder(TrabajoViewHolder holder, int position) {
 
         String mCurrent = data[position].getJobTitle() + " - " + data[position].getJobId() + "\n" +
-                "Salario: " + data[position].getMinSalary() +"-"+data[position].getMaxSalary();
+                "Salario: " + data[position].getMinSalary() + "-" + data[position].getMaxSalary();
 
         holder.textView.setText(mCurrent);
     }

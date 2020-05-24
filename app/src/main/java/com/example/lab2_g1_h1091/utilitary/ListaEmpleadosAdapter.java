@@ -27,14 +27,14 @@ public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAd
     public static class EmpleadoViewHolder extends RecyclerView.ViewHolder {
 
         TextView textView;
-        Button button1;
-        Button button2;
+        Button btnEditar;
+        Button btnBorrar;
 
         public EmpleadoViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.textView1);
-            button1 = itemView.findViewById(R.id.button1);
-            button2 = itemView.findViewById(R.id.button2);
+            btnEditar = itemView.findViewById(R.id.btnEditar);
+            btnBorrar = itemView.findViewById(R.id.btnBorrar);
         }
     }
 
