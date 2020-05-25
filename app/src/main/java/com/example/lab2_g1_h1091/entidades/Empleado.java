@@ -8,37 +8,6 @@ import androidx.annotation.Size;
 
 public class Empleado {
 
-    @Size(max=6)
-    private String employeeId;
-    @Size(max=20)
-    private String firstName;
-    @Size(max=25)
-    private String lastName;
-    @Size(max=25)
-    private String email;
-    @Size(max=20)
-    private String phoneNumber;
-    private Trabajo jobId;
-    private Manager manager;
-    private double salary;
-    private double commissionPct;
-    private Department departmentId;
-    @Size(max=7)
-    private String createdBy;
-
-    public Empleado(String employeeId, String firstName, String lastName, String email, String phoneNumber, Trabajo trabajo, Manager manager, double salary, double commissionPct, Department department, String createdBy) {
-        this.employeeId = employeeId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.jobId = trabajo;
-        this.manager = manager;
-        this.salary = salary;
-        this.commissionPct = commissionPct;
-        this.departmentId = department;
-        this.createdBy = createdBy;
-    }
 
     public String getEmployeeId() {
         return employeeId;
@@ -81,11 +50,11 @@ public class Empleado {
     }
 
     public Trabajo getTrabajo() {
-        return jobId;
+        return trabajo;
     }
 
     public void setTrabajo(Trabajo trabajo) {
-        this.jobId = trabajo;
+        this.trabajo = trabajo;
     }
 
     public Manager getManager() {
@@ -113,11 +82,11 @@ public class Empleado {
     }
 
     public Department getDepartment() {
-        return departmentId;
+        return department;
     }
 
     public void setDepartment(Department department) {
-        this.departmentId = department;
+        this.department = department;
     }
 
     public String getCreatedBy() {
@@ -127,4 +96,37 @@ public class Empleado {
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
+
+    @Size(max=6)
+    private String employeeId;
+    @Size(max=20)
+    private String firstName;
+    @Size(max=25)
+    private String lastName;
+    @Size(max=25)
+    private String email;
+    @Size(max=20)
+    private String phoneNumber;
+    private Trabajo trabajo;
+    private Manager manager;
+    private double salary;
+    private double commissionPct;
+    private Department department;
+    @Size(max=7)
+    private String createdBy;
+
+    public Empleado(String employeeId, String firstName, String lastName, String email, String phoneNumber, Trabajo trabajo, Manager manager, double salary, double commissionPct, Department department, String createdBy) {
+        this.employeeId = employeeId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.trabajo = trabajo;
+        this.manager = manager;
+        this.salary = salary;
+        this.commissionPct = commissionPct;
+        this.department = department;
+        this.createdBy = createdBy;
+    }
+
 }

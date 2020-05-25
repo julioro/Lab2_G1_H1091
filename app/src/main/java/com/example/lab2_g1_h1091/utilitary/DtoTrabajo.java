@@ -8,11 +8,21 @@ public class DtoTrabajo {
     private int cuota;
     private Trabajo[] trabajos;
 
+    public int getCuota() {
+        return cuota;
+    }
+
+    public void setCuota(int cuota) {
+        this.cuota = cuota;
+    }
+
+    private int cuota;
+
     public DtoTrabajo(){
 
     }
 
-    public DtoTrabajo(String estado, int cuota, Trabajo[] trabajos) {
+    public DtoTrabajo(String estado,int cuota, Trabajo[] trabajos){
         this.estado = estado;
         this.trabajos = trabajos;
         this.cuota = cuota;

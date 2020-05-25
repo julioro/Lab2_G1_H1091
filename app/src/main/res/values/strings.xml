@@ -4,4 +4,6 @@
     <string name="empleados_activity_title">Lista de Empleados</string>
     <string name="formulario_trabajo_title">Nuevo Trabajo</string>
     <string name="formulario_empleado_title">Nuevo Empleado</string>
+    <string name="editar">Editar</string>
+    <string name="borrar">Borrar</string>
 </resources>

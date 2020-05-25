@@ -30,17 +30,17 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/btnEditar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Editar" />
+                android:text="@string/editar" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnBorrar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Borrar" />
+                android:text="@string/borrar" />
         </LinearLayout>
     </LinearLayout>

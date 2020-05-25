@@ -71,7 +71,7 @@ public class formularioTrabajo2 extends AppCompatActivity {
                                                 Log.d("xd", "Estoy aca 4.");
 
 
-                                                Department[] departments = dtoDepartment.getdepartamentos();
+                                                Department[] departments = dtoDepartment.getLista();
 
                                                 for (int i = 0; i < departments.length; i++) {
 

@@ -1,10 +1,5 @@
 package com.example.lab2_g1_h1091;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -20,10 +17,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.lab2_g1_h1091.entidades.ApiKey;
-
 import com.example.lab2_g1_h1091.entidades.Trabajo;
 import com.example.lab2_g1_h1091.utilitary.DtoTrabajo;
-import com.example.lab2_g1_h1091.utilitary.ListaTrabajosAdapter;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -36,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         //return super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
-
     }
 
     @Override
@@ -45,16 +39,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menuItem1:
                 Intent intent = new Intent(this, EmpleadosActivity.class);
-                int requetsCode_NewTrabajo = 1;
-
-                startActivityForResult(intent, requetsCode_NewTrabajo);
-
-                Toast.makeText(this, "Nuevo trabajo creado", Toast.LENGTH_SHORT);
-
-                startActivityForResult(intent, requetsCode_NewTrabajo);
-
-                Toast.makeText(this, "Nuevo trabajo creado", Toast.LENGTH_SHORT);
-
+                startActivity(intent);
                 return true;
 
             case R.id.menuItem2:
@@ -85,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         final RequestQueue requestQueue = Volley.newRequestQueue(this);
         String GROUP_KEY = "WfnNf52Wsw6p6N8gVPFF";
         String URL_TARGET_GET_API_KEY = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/getApiKey?groupKey=" + GROUP_KEY;
-        Log.d("xd", "Estoy aca 0.");
         final StringRequest getApiKeyRequest = new StringRequest(StringRequest.Method.POST, URL_TARGET_GET_API_KEY,
                 new Response.Listener<String>() {
                     @Override
@@ -103,8 +87,15 @@ public class MainActivity extends AppCompatActivity {
                                         public void onResponse(String response) {
                                             Gson gson = new Gson();
                                             DtoTrabajo dtoTrabajos = gson.fromJson(response, DtoTrabajo.class);
-                                            Log.d("CUOTASSSSS", Integer.toString(dtoTrabajos.getCuota()));
+
                                             if (dtoTrabajos.getEstado().equals("ok")) { // Si la consulta por lista de trabajos fue exitosa.
+                                                final Trabajo[] trabajos = dtoTrabajos.getTrabajos();
+                                                /*ListaTrabajosAdapter adapter = new ListaTrabajosAdapter(trabajos, MainActivity.this, new ListaTrabajosAdapter.OnItemClickListener() {
+                                                    @Override
+                                                    public void onItemClick(int position) {
+
+                                                    }
+                                                });
 
                                                 Trabajo[] trabajos = dtoTrabajos.getTrabajos();
 
@@ -112,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                                                 RecyclerView rV = findViewById(R.id.recyclerView1);
                                                 rV.setAdapter(adapter);
                                                 rV.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
+*/
                                             } else {
                                                 Log.e("error", response.toString());
                                             }
@@ -121,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            Log.d("xd", "Estoy aca 5.");
+                                            Log.e("error", error.toString());
 
                                         }
                                     }) {
@@ -150,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
         requestQueue.add(getApiKeyRequest);
 
-
     }
+
+
 }
